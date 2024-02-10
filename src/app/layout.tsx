@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 //import "./globals.css";
+import styles from "./layout.module.css";
 import Footer from "./ui/footer";
 import Header from "./ui/header";
 
@@ -19,9 +20,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
-        {children}
-        <Footer />
+        <div className={styles.appContainer}>
+          <Header />
+          <div className={styles.content}>{children}</div>
+          <div className={styles.footer}>
+            <Footer />
+          </div>
+        </div>
       </body>
     </html>
   );
