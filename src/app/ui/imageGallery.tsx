@@ -1,4 +1,5 @@
 import ImageCard from "./imageCard";
+import styles from "./imageGallery.module.css";
 
 export default function ImageGallery() {
   const images = [];
@@ -13,5 +14,5 @@ export default function ImageGallery() {
     );
   }
 
-  return <div>{images}</div>;
+  return <div className={styles.imageGallery}>{images}</div>;
 }
