@@ -4,7 +4,7 @@ import styles from "./imageGallery.module.css";
 export default function ImageGallery() {
   const images = [];
 
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 11; i++) {
     images.push(
       <ImageCard
         id={i}
