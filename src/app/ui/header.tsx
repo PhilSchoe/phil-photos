@@ -2,7 +2,7 @@ import styles from "./header.module.css";
 
 export default function Header() {
   return (
-    <div className={styles.headerContent + " " + styles.headerBorder}>
+    <div className={`${styles.headerContent} ${styles.headerBorder}`}>
       <button className={styles.button} type="button">
         Add Images
       </button>
