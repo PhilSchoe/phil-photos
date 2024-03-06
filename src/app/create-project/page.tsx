@@ -1,3 +1,10 @@
+import styles from "./page.module.css";
+
 export default function createProject() {
-  return <h1>Hello, from create projects!</h1>;
+  return (
+    <div className={styles.container}>
+      <div className={styles.projectLayout}>Image Placement</div>
+      <div className={styles.uploadArea}>Upload area</div>
+    </div>
+  );
 }

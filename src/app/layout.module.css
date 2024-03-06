@@ -1,15 +1,16 @@
 .appContainer {
-  position: relative;
+  display: flex;
+  flex-flow: column;
   min-height: 100vh;
 }
 
 .content {
-  padding-bottom: 2.5rem; /* Footer height */
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column;
+  padding-bottom: 1rem;
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 2.5rem; /* Footer height */
+  flex: 0 1 2.5rem;
 }

@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.projectLayout {
+  width: 70%;
+  background-color: blue;
+}
+
+.uploadArea {
+  width: 30%;
+  background-color: green;
+}

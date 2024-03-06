@@ -1,5 +1,6 @@
 .headerContent {
   display: flex;
+  flex: 0 1 auto;
   justify-content: space-between;
   align-items: center;
   padding: 0.25rem;
