@@ -8,9 +8,12 @@
   flex: 1 1 auto;
   display: flex;
   flex-flow: column;
-  padding-bottom: 1rem;
 }
 
 .footer {
   flex: 0 1 2.5rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-top: solid black;
 }

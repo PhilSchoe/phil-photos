@@ -5,7 +5,11 @@
 
 .projectLayout {
   width: 70%;
-  background-color: blue;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  border-right: solid black;
 }
 
 .uploadArea {
