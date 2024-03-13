@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  phil-photos-db:
+    image: postgres
+    restart: always
+    container_name: phil-photos-db
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: example
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
