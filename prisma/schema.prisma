@@ -24,6 +24,7 @@ model Project{
   id       Int  @id @default(autoincrement())
   author   User @relation(fields: [authorId], references: [id])
   authorId Int
+  title    String
   images   Image[]
 }
 
