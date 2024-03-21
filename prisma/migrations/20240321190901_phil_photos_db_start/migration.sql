@@ -11,6 +11,7 @@ CREATE TABLE "User" (
 CREATE TABLE "Project" (
     "id" SERIAL NOT NULL,
     "authorId" INTEGER NOT NULL,
+    "title" TEXT NOT NULL,
 
     CONSTRAINT "Project_pkey" PRIMARY KEY ("id")
 );
