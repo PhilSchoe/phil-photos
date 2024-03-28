@@ -3,6 +3,7 @@
 import { FormEventHandler, useState } from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
+import { uploadProjectAction } from "./uploadProjectAction";
 
 export default function createProject() {
   const [imageUrl, setImageUrl] = useState<string>("/vercel.svg");
@@ -20,18 +21,8 @@ export default function createProject() {
     fileReader.readAsDataURL(event.target.files[0]);
   };
 
-  // TODO: Check type for submit event
-  const onSubmit = (event: any) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const title = formData.get("title");
-
-    console.log(title);
-  };
-
   return (
-    <form className={styles.container} onSubmit={onSubmit}>
+    <form className={styles.container} action={uploadProjectAction}>
       <div className={styles.projectLayout}>
         <Image width={300} height={300} alt="Image" src={imageUrl} />
       </div>
