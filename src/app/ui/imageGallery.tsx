@@ -1,5 +1,6 @@
 import ImageCard from "./imageCard";
 import styles from "./imageGallery.module.css";
+import prisma from "@/db/prisma";
 
 export default async function ImageGallery() {
   const images = [];
