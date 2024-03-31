@@ -22,7 +22,19 @@ export default function createProject() {
   };
 
   return (
-    <form className={styles.container} action={uploadProjectAction}>
+    <form
+      className={styles.container}
+      onSubmit={(e) => {
+        e.preventDefault();
+
+        const form = e.target as HTMLFormElement;
+        const formData = new FormData(form);
+
+        uploadProjectAction(formData).then(() => {
+          form.reset();
+        });
+      }}
+    >
       <div className={styles.projectLayout}>
         <Image width={300} height={300} alt="Image" src={imageUrl} />
       </div>
