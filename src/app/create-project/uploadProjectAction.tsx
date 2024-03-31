@@ -1,6 +1,7 @@
 "use server";
 
 import prisma from "@/db/prisma";
+import { revalidatePath } from "next/cache";
 
 export async function uploadProjectAction(formData: FormData) {
   const title = formData.get("title") as string;
@@ -14,4 +15,6 @@ export async function uploadProjectAction(formData: FormData) {
       },
     },
   });
+
+  revalidatePath("/");
 }
