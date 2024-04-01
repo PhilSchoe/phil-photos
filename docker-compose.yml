@@ -11,5 +11,20 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  phil-photos-objectstore:
+    image: quay.io/minio/minio:latest
+    command: minio server --console-address ":9001" /data
+    restart: always
+    container_name: phil-photos-objectstore
+    ports:
+      - 9000:9000
+      - 9001:9001
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    volumes:
+      - miniodata:/data
+
 volumes:
   pgdata:
+  miniodata:
