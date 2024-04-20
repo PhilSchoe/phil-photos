@@ -15,7 +15,7 @@ export async function uploadProjectAction(
       authorId: 1,
       title: title,
       images: {
-        create: [{ source: "https://picsum.photos/200" }],
+        create: [{ source: objectstoreId }],
       },
     },
   });

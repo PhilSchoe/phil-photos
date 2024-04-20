@@ -10,4 +10,13 @@ export class MinioObjectStoreDAO implements ObjectStoreDAO {
 
     return url;
   }
+
+  async getGetObjectUrl(filename: string): Promise<string> {
+    const url = await minioClient.presignedGetObject(
+      process.env.MINIO_DEFAULT_BUCKET as string,
+      filename
+    );
+
+    return url;
+  }
 }

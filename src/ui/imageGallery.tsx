@@ -1,3 +1,4 @@
+import objectstoreDAOInstance from "@/data-acess/objectstore.dao";
 import ImageCard from "./imageCard";
 import styles from "./imageGallery.module.css";
 import prisma from "@/db/prisma";
@@ -17,13 +18,10 @@ export default async function ImageGallery() {
 
   const projects = await prisma.project.findMany({ include: { images: true } });
   for (let project of projects) {
-    images.push(
-      <ImageCard
-        id={project.id}
-        title={project.title}
-        url={project.images[0] ? project.images[0].source : ""}
-      />
-    );
+    const image = project.images[0];
+    const url = await objectstoreDAOInstance.getGetObjectUrl(image.source);
+
+    images.push(<ImageCard id={project.id} title={project.title} url={url} />);
   }
 
   return <div className={styles.imageGallery}>{images}</div>;
