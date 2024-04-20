@@ -1,12 +1,17 @@
 "use client";
 
-import { FormEventHandler, useState } from "react";
+import { useState } from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
-import { uploadProjectAction } from "./uploadProjectAction";
+import {
+  getPutObjectUrlAction,
+  uploadProjectAction,
+} from "./uploadProjectAction";
+import RestConnectionHandler from "@/data-acess/rest-connection-handler";
 
 export default function createProject() {
   const [imageUrl, setImageUrl] = useState<string>("/vercel.svg");
+  const [imageFile, setImageFile] = useState<File>();
 
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) {
@@ -18,6 +23,7 @@ export default function createProject() {
       setImageUrl(fileReader.result as string);
     };
 
+    setImageFile(event.target.files[0]);
     fileReader.readAsDataURL(event.target.files[0]);
   };
 
@@ -30,9 +36,19 @@ export default function createProject() {
         const form = e.target as HTMLFormElement;
         const formData = new FormData(form);
 
-        uploadProjectAction(formData).then(() => {
-          form.reset();
-        });
+        getPutObjectUrlAction(imageFile!.name)
+          .then((url: string) => {
+            RestConnectionHandler.put(url, imageFile!, imageFile!.type);
+          })
+          .then(() => {
+            uploadProjectAction(formData, imageFile!.name).then(() => {
+              form.reset();
+              alert("Upload successful!");
+            });
+          })
+          .catch((error: Error) => {
+            console.error(error);
+          });
       }}
     >
       <div className={styles.projectLayout}>
