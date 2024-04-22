@@ -3,19 +3,27 @@
 import prisma from "@/db/prisma";
 import { revalidatePath } from "next/cache";
 import objectstoreDAOInstance from "@/data-acess/objectstore.dao";
+import { nanoid } from "nanoid";
+import { ImageItem } from "@/lib/image-item";
 
 export async function uploadProjectAction(
   formData: FormData,
-  objectstoreId: string
+  imageItem: ImageItem
 ) {
   const title = formData.get("title") as string;
 
-  const project = await prisma.project.create({
+  await prisma.project.create({
     data: {
       authorId: 1,
       title: title,
       images: {
-        create: [{ source: objectstoreId }],
+        create: [
+          {
+            fileName: imageItem.fileName,
+            fileSize: imageItem.fileSize,
+            objectstoreId: imageItem.objectstoreId,
+          },
+        ],
       },
     },
   });
@@ -23,13 +31,22 @@ export async function uploadProjectAction(
   revalidatePath("/");
 }
 
-export async function getPutObjectUrlAction(filename: string): Promise<string> {
+export async function getPutObjectUrlAction(
+  fileName: string,
+  fileSize: number
+): Promise<ImageItem> {
   try {
-    const url = await objectstoreDAOInstance.getPutObjectUrl(filename);
+    const objectstoreId = `${nanoid()}-${fileName}`;
+    const url = await objectstoreDAOInstance.getPutObjectUrl(objectstoreId);
 
-    return url;
+    return {
+      fileName,
+      fileSize,
+      objectstoreId,
+      url,
+    };
   } catch (error) {
     console.error(error);
-    return error as string;
+    return Promise.reject(error);
   }
 }

@@ -19,7 +19,9 @@ export default async function ImageGallery() {
   const projects = await prisma.project.findMany({ include: { images: true } });
   for (let project of projects) {
     const image = project.images[0];
-    const url = await objectstoreDAOInstance.getGetObjectUrl(image.source);
+    const url = await objectstoreDAOInstance.getGetObjectUrl(
+      image.objectstoreId
+    );
 
     images.push(<ImageCard id={project.id} title={project.title} url={url} />);
   }

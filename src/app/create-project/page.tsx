@@ -8,6 +8,7 @@ import {
   uploadProjectAction,
 } from "./uploadProjectAction";
 import RestConnectionHandler from "@/data-acess/rest-connection-handler";
+import { ImageItem } from "@/lib/image-item";
 
 export default function createProject() {
   const [imageUrl, setImageUrl] = useState<string>("/vercel.svg");
@@ -36,12 +37,19 @@ export default function createProject() {
         const form = e.target as HTMLFormElement;
         const formData = new FormData(form);
 
-        getPutObjectUrlAction(imageFile!.name)
-          .then((url: string) => {
-            RestConnectionHandler.put(url, imageFile!, imageFile!.type);
+        if (imageFile == null) {
+          alert("Error Uploading Project!");
+          return;
+        }
+
+        getPutObjectUrlAction(imageFile.name, imageFile.size)
+          .then((imageItem: ImageItem): Promise<ImageItem> => {
+            RestConnectionHandler.put(imageItem.url, imageFile, imageFile.type);
+
+            return Promise.resolve(imageItem);
           })
-          .then(() => {
-            uploadProjectAction(formData, imageFile!.name).then(() => {
+          .then((imageItem: ImageItem) => {
+            uploadProjectAction(formData, imageItem).then(() => {
               form.reset();
               alert("Upload successful!");
             });
