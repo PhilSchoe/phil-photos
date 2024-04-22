@@ -3,7 +3,7 @@ export default class RestConnectionHandler {
     url: string,
     data: T,
     filetype: string
-  ) {
+  ): Promise<Response> {
     try {
       const response = await fetch(url, {
         method: "PUT",
@@ -13,8 +13,11 @@ export default class RestConnectionHandler {
           "Access-Control-Allow-Origin": "*",
         },
       });
+
+      return response;
     } catch (error) {
       console.log(error);
+      return Promise.reject(error);
     }
   }
 }
