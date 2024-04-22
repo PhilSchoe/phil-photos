@@ -19,7 +19,9 @@ CREATE TABLE "Project" (
 -- CreateTable
 CREATE TABLE "Image" (
     "id" SERIAL NOT NULL,
-    "source" TEXT NOT NULL,
+    "fileName" TEXT NOT NULL,
+    "fileSize" INTEGER NOT NULL,
+    "objectstoreId" TEXT NOT NULL,
     "projectId" INTEGER NOT NULL,
 
     CONSTRAINT "Image_pkey" PRIMARY KEY ("id")
