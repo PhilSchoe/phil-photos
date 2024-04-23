@@ -40,6 +40,8 @@ export default function createProject() {
         uploadProjectClientAction(imageFile, formData)
           .then(() => {
             form.reset();
+            setImageUrl("/vercel.svg");
+            setImageFile(undefined);
           })
           .catch((error) => {
             console.error(error);
