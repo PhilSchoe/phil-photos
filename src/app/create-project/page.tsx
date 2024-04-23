@@ -3,12 +3,7 @@
 import { useState } from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
-import {
-  getPutObjectUrlAction,
-  uploadProjectAction,
-} from "./uploadProjectAction";
-import RestConnectionHandler from "@/data-acess/rest-connection-handler";
-import { ImageItem } from "@/lib/image-item";
+import { uploadProjectClientAction } from "./upload-project-client";
 
 export default function createProject() {
   const [imageUrl, setImageUrl] = useState<string>("/vercel.svg");
@@ -42,20 +37,13 @@ export default function createProject() {
           return;
         }
 
-        getPutObjectUrlAction(imageFile.name, imageFile.size)
-          .then((imageItem: ImageItem): Promise<ImageItem> => {
-            RestConnectionHandler.put(imageItem.url, imageFile, imageFile.type);
-
-            return Promise.resolve(imageItem);
+        uploadProjectClientAction(imageFile, formData)
+          .then(() => {
+            form.reset();
           })
-          .then((imageItem: ImageItem) => {
-            uploadProjectAction(formData, imageItem).then(() => {
-              form.reset();
-              alert("Upload successful!");
-            });
-          })
-          .catch((error: Error) => {
+          .catch((error) => {
             console.error(error);
+            alert(`Error creating project:\n${error}`);
           });
       }}
     >
