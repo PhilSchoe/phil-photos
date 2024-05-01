@@ -1,27 +1,22 @@
 "use client";
 import styles from "./header.module.css";
 import { useRouter } from "next/navigation";
+import Button from "@/ui/components/button/button";
 
 export default function Header() {
   const router = useRouter();
 
   return (
     <div className={`${styles.headerContent} ${styles.headerBorder}`}>
-      <button
-        onClick={() => router.push("/create-project")}
-        className={styles.button}
+      <Button
+        title="Create Project"
         type="button"
-      >
-        Create Project
-      </button>
+        onClick={() => router.push("/create-project")}
+      />
       <div className={styles.title}>Phil-Photos</div>
       <div>
-        <button className={styles.button} type="button">
-          Sign In
-        </button>
-        <button className={styles.button} type="button">
-          Sign Up
-        </button>
+        <Button title="Sign In" type="button" onClick={() => {}} />
+        <Button title="Sign Up" type="button" onClick={() => {}} />
       </div>
     </div>
   );
