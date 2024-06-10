@@ -9,9 +9,10 @@ export default async function ImageGallery() {
   for (let i = 0; i < 6; i++) {
     images.push(
       <ImageCard
-        id={i}
         url={"https://picsum.photos/20" + i}
-        title={"Title: " + i}
+        fileName={"Title: " + i}
+        fileSize={0}
+        objectstoreId=""
       />
     );
   }
@@ -23,7 +24,14 @@ export default async function ImageGallery() {
       image.objectstoreId
     );
 
-    images.push(<ImageCard id={project.id} title={project.title} url={url} />);
+    images.push(
+      <ImageCard
+        fileName={project.title}
+        url={url}
+        fileSize={image.fileSize}
+        objectstoreId={image.objectstoreId}
+      />
+    );
   }
 
   return <div className={styles.imageGallery}>{images}</div>;
