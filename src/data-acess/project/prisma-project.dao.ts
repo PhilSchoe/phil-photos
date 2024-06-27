@@ -6,6 +6,24 @@ import { mapPrismaProjectToProject } from "./project-mapper";
 
 export class PrismaProjectDAO implements ProjectDAO {
   /**
+   * Retrieves projects from the database, optionally including images.
+   *
+   * @param {boolean} includeImages - Whether to include images in the result. Default is false.
+   * @return {Promise<Project[]>} A promise that resolves to an array of projects.
+   */
+  public async getProjects(includeImages: boolean = false): Promise<Project[]> {
+    const projectInclude = { images: includeImages };
+
+    const prismaProjects = await prisma.project.findMany({
+      include: projectInclude,
+    });
+
+    return prismaProjects.map((prismaProject) =>
+      mapPrismaProjectToProject(prismaProject, includeImages)
+    );
+  }
+
+  /**
    * Retrieves a project by its ID, optionally including images.
    *
    * @param {number} projectId - The ID of the project to retrieve.
