@@ -1,7 +1,7 @@
 import objectstoreDAOInstance from "@/data-acess/objectstore.dao";
 import ImageCard from "./imageCard";
 import styles from "./imageGallery.module.css";
-import { PrismaProjectDAO } from "@/data-acess/project/prisma-project.dao";
+import ProjectService from "@/services/project-service";
 
 export default async function ImageGallery() {
   const images = [];
@@ -17,8 +17,7 @@ export default async function ImageGallery() {
     );
   }
 
-  const projectDAO = new PrismaProjectDAO();
-  const projects = await projectDAO.getProjects(true);
+  const projects = await ProjectService.getProjects(true);
 
   for (let project of projects) {
     const image = project.images[0];
