@@ -1,7 +1,7 @@
 export interface Image {
-  id: number;
+  id?: number;
   fileName: string;
   fileSize: number;
   objectstoreId: string;
-  projectId: number;
+  projectId?: number;
 }

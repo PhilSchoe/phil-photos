@@ -8,7 +8,13 @@ export default class ProjectService {
     ProjectService.projectDAO = projectDAO;
   }
 
-  public static async getProjects(includeImages: boolean): Promise<Project[]> {
+  public static async createProject(project: Project): Promise<void> {
+    ProjectService.projectDAO.createProject(project);
+  }
+
+  public static async getProjects(
+    includeImages: boolean = false
+  ): Promise<Project[]> {
     return ProjectService.projectDAO.getProjects(includeImages);
   }
 }

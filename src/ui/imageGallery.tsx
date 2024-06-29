@@ -1,7 +1,7 @@
 import objectstoreDAOInstance from "@/data-acess/objectstore.dao";
 import ImageCard from "./imageCard";
 import styles from "./imageGallery.module.css";
-import ProjectService from "@/services/project-service";
+import { ProjectService } from "@/services";
 
 export default async function ImageGallery() {
   const images = [];

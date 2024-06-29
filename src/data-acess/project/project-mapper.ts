@@ -24,3 +24,20 @@ export function mapPrismaProjectToProject(
     images: includeImages ? images : [],
   };
 }
+
+export function mapProjectToPrismaProject(
+  project: Project
+): Prisma.ProjectUncheckedCreateInput {
+  const { id, authorId, title, images } = project;
+  return {
+    authorId,
+    title,
+    images: {
+      create: images.map((image) => ({
+        fileName: image.fileName,
+        fileSize: image.fileSize,
+        objectstoreId: image.objectstoreId,
+      })),
+    },
+  };
+}

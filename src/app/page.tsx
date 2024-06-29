@@ -4,10 +4,6 @@ import ImageGallery from "../ui/imageGallery";
 import { PrismaProjectDAO } from "@/data-acess/project/prisma-project.dao";
 import ProjectService from "@/services/project-service";
 
-// INIT APP
-
-ProjectService.init(new PrismaProjectDAO());
-
 export default function Home() {
   return (
     <main className={styles.main}>

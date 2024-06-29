@@ -1,7 +1,7 @@
 import { Image } from "./image";
 
 export interface Project {
-  id: number;
+  id?: number;
   authorId: number;
   title: string;
   images: Image[];

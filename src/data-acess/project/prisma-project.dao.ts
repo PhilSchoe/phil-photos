@@ -2,7 +2,10 @@ import { Project } from "@/lib/project";
 import { ProjectDAO } from "./project.dao";
 import { Prisma } from "@prisma/client";
 import prisma from "@/db/prisma";
-import { mapPrismaProjectToProject } from "./project-mapper";
+import {
+  mapPrismaProjectToProject,
+  mapProjectToPrismaProject,
+} from "./project-mapper";
 
 export class PrismaProjectDAO implements ProjectDAO {
   /**
@@ -52,7 +55,17 @@ export class PrismaProjectDAO implements ProjectDAO {
     // Map the Prisma project object to a standard project object and return it
     return mapPrismaProjectToProject(prismaProject, includeImages);
   }
-  createProject(project: Project): Promise<void> {
-    throw new Error("Method not implemented.");
+
+  /**
+   * Creates a new project in the database.
+   *
+   * @param {Project} project - The project to create.
+   * @return {Promise<void>} A promise that resolves when the project is created.
+   */
+  public async createProject(project: Project): Promise<void> {
+    const prismaProject: Prisma.ProjectUncheckedCreateInput =
+      mapProjectToPrismaProject(project);
+
+    await prisma.project.create({ data: prismaProject });
   }
 }
