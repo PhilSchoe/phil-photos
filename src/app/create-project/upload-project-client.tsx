@@ -9,13 +9,14 @@ export async function uploadProjectClientAction(
   formData: FormData
 ) {
   try {
-    const imageItem = await getPutObjectUrlAction(
-      imageFile.name,
-      imageFile.size
-    );
+    // Use object store service to get put-object-url for image
+
+    const { objectstoreId, url } = await getPutObjectUrlAction(imageFile.name);
+
+    // Use image service to upload image
 
     const response = await RestConnectionHandler.put(
-      imageItem.url,
+      url,
       imageFile,
       imageFile.type
     );
@@ -24,7 +25,16 @@ export async function uploadProjectClientAction(
       throw new Error("Image upload failed! Project creation is aborted!");
     }
 
-    await uploadProjectAction(formData, imageItem);
+    const image = {
+      fileName: imageFile.name,
+      fileSize: imageFile.size,
+      objectstoreId: objectstoreId,
+      url: url,
+    };
+
+    // Use project service in react server action to upload project
+
+    await uploadProjectAction(formData, image);
   } catch (error) {
     console.error(error);
     return Promise.reject(error);

@@ -1,9 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import objectstoreDAOInstance from "@/data-acess/objectstore.dao";
-import { ProjectService } from "@/services";
-import { nanoid } from "nanoid";
+import { ObjectStoreService, ProjectService } from "@/services";
 import { ImageItem } from "@/lib/image-item";
 
 export async function uploadProjectAction(
@@ -27,20 +25,12 @@ export async function uploadProjectAction(
   revalidatePath("/");
 }
 
-export async function getPutObjectUrlAction(
-  fileName: string,
-  fileSize: number
-): Promise<ImageItem> {
+export async function getPutObjectUrlAction(filename: string): Promise<{
+  objectstoreId: string;
+  url: string;
+}> {
   try {
-    const objectstoreId = `${nanoid()}-${fileName}`;
-    const url = await objectstoreDAOInstance.getPutObjectUrl(objectstoreId);
-
-    return {
-      fileName,
-      fileSize,
-      objectstoreId,
-      url,
-    };
+    return ObjectStoreService.getPutObjectUrl(filename);
   } catch (error) {
     console.error(error);
     return Promise.reject(error);
