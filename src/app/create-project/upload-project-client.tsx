@@ -3,6 +3,7 @@ import {
   getPutObjectUrlAction,
   uploadProjectAction,
 } from "./uploadProjectAction";
+import { Image } from "@/lib/image";
 
 export async function uploadProjectClientAction(
   imageFile: File,
@@ -25,11 +26,10 @@ export async function uploadProjectClientAction(
       throw new Error("Image upload failed! Project creation is aborted!");
     }
 
-    const image = {
+    const image: Image = {
       fileName: imageFile.name,
       fileSize: imageFile.size,
       objectstoreId: objectstoreId,
-      url: url,
     };
 
     // Use project service in react server action to upload project

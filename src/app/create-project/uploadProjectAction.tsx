@@ -2,12 +2,9 @@
 
 import { revalidatePath } from "next/cache";
 import { ObjectStoreService, ProjectService } from "@/services";
-import { ImageItem } from "@/lib/image-item";
+import { Image } from "@/lib/image";
 
-export async function uploadProjectAction(
-  formData: FormData,
-  imageItem: ImageItem
-) {
+export async function uploadProjectAction(formData: FormData, image: Image) {
   const title = formData.get("title") as string;
 
   await ProjectService.createProject({
@@ -15,9 +12,9 @@ export async function uploadProjectAction(
     title: title,
     images: [
       {
-        fileName: imageItem.fileName,
-        fileSize: imageItem.fileSize,
-        objectstoreId: imageItem.objectstoreId,
+        fileName: image.fileName,
+        fileSize: image.fileSize,
+        objectstoreId: image.objectstoreId,
       },
     ],
   });

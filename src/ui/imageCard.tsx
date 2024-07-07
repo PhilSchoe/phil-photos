@@ -1,8 +1,13 @@
-import { ImageItem } from "../lib/image-item";
 import Image from "next/image";
 import styles from "./imageCard.module.css";
 
-export default function ImageCard({ url, fileName }: ImageItem) {
+export default function ImageCard({
+  url,
+  projectName,
+}: {
+  url: string;
+  projectName: string;
+}) {
   return (
     <div className={styles.card}>
       <Image
@@ -12,7 +17,7 @@ export default function ImageCard({ url, fileName }: ImageItem) {
         width="200"
         height="200"
       />
-      <div className={styles.title}>{fileName}</div>
+      <div className={styles.title}>{projectName}</div>
     </div>
   );
 }

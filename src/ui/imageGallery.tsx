@@ -10,9 +10,7 @@ export default async function ImageGallery() {
     images.push(
       <ImageCard
         url={"https://picsum.photos/20" + i}
-        fileName={"Title: " + i}
-        fileSize={0}
-        objectstoreId=""
+        projectName={"Title: " + i}
       />
     );
   }
@@ -25,14 +23,7 @@ export default async function ImageGallery() {
       image.objectstoreId
     );
 
-    images.push(
-      <ImageCard
-        fileName={project.title}
-        url={url}
-        fileSize={image.fileSize}
-        objectstoreId={image.objectstoreId}
-      />
-    );
+    images.push(<ImageCard projectName={project.title} url={url} />);
   }
 
   return <div className={styles.imageGallery}>{images}</div>;
