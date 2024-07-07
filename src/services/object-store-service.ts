@@ -18,4 +18,8 @@ export default class ObjectStoreService {
 
     return { objectstoreId, url };
   }
+
+  public static async getGetObjectUrl(objectstoreId: string) {
+    return ObjectStoreService.objectStoreDAO.getGetObjectUrl(objectstoreId);
+  }
 }

@@ -1,7 +1,6 @@
-import objectstoreDAOInstance from "@/data-acess/objectstore.dao";
 import ImageCard from "./imageCard";
 import styles from "./imageGallery.module.css";
-import { ProjectService } from "@/services";
+import { ObjectStoreService, ProjectService } from "@/services";
 
 export default async function ImageGallery() {
   const images = [];
@@ -20,9 +19,7 @@ export default async function ImageGallery() {
 
   for (let project of projects) {
     const image = project.images[0];
-    const url = await objectstoreDAOInstance.getGetObjectUrl(
-      image.objectstoreId
-    );
+    const url = await ObjectStoreService.getGetObjectUrl(image.objectstoreId);
 
     images.push(
       <ImageCard projectName={project.title} url={url} key={project.id} />
