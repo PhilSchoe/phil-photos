@@ -7,13 +7,22 @@ export default function Header() {
 
   return (
     <div className={`${styles.headerContent} ${styles.headerBorder}`}>
-      <button
-        onClick={() => router.push("/create-project")}
-        className={styles.button}
-        type="button"
-      >
-        Create Project
-      </button>
+      <div>
+        <button
+          onClick={() => router.push("/")}
+          className={styles.button}
+          type="button"
+        >
+          Home
+        </button>
+        <button
+          onClick={() => router.push("/create-project")}
+          className={styles.button}
+          type="button"
+        >
+          Create Project
+        </button>
+      </div>
       <div className={styles.title}>Phil-Photos</div>
       <div>
         <button className={styles.button} type="button">
