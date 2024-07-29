@@ -1,11 +1,7 @@
-"use client";
 import styles from "./header.module.css";
 import { Anchor } from "./components/anchor/anchor";
-import { useRouter } from "next/navigation";
 
 export default function Header() {
-  const router = useRouter();
-
   return (
     <div className={`${styles.headerContent} ${styles.headerBorder}`}>
       <div>
