@@ -1,0 +1,13 @@
+.anchor {
+  text-decoration: none;
+  color: black;
+  margin-left: 0.6rem;
+  margin-right: 0.6rem;
+}
+
+.anchor--is-selected {
+  background-color: black;
+  color: white;
+  border-radius: 100px;
+  padding: 0.6rem;
+}

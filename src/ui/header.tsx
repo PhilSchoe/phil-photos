@@ -1,5 +1,6 @@
 "use client";
 import styles from "./header.module.css";
+import { Anchor } from "./components/anchor/anchor";
 import { useRouter } from "next/navigation";
 
 export default function Header() {
@@ -8,20 +9,12 @@ export default function Header() {
   return (
     <div className={`${styles.headerContent} ${styles.headerBorder}`}>
       <div>
-        <button
-          onClick={() => router.push("/")}
-          className={styles.button}
-          type="button"
-        >
-          Home
-        </button>
-        <button
-          onClick={() => router.push("/create-project")}
-          className={styles.button}
-          type="button"
-        >
-          Create Project
-        </button>
+        <Anchor title="Home" href="./" isSelected={true} />
+        <Anchor
+          title="Create Project"
+          href="./create-project"
+          isSelected={false}
+        />
       </div>
       <div className={styles.title}>Phil-Photos</div>
       <div>
