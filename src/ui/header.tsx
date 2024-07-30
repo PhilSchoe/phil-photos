@@ -1,13 +1,17 @@
 "use client";
+import ButtonGroup from "./components/button/buton-group";
 import styles from "./header.module.css";
 import { useRouter } from "next/navigation";
 
 export default function Header() {
   const router = useRouter();
 
+  const buttonProps = [{ title: "Home" }, { title: "Create Project" }];
+
   return (
     <div className={`${styles.headerContent} ${styles.headerBorder}`}>
       <div>
+        <ButtonGroup buttonProps={buttonProps} />
         <button
           onClick={() => router.push("/")}
           className={styles.button}
