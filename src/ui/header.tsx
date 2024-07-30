@@ -1,17 +1,22 @@
 import styles from "./header.module.css";
-import { Anchor } from "./components/anchor/anchor";
+import { AnchorGroup } from "./components/anchor/anchor-group";
+import { AnchorProps } from "./components/anchor/anchor-props";
 
 export default function Header() {
+  const anchorProps: AnchorProps[] = [
+    {
+      title: "Home",
+      href: "./",
+    },
+    {
+      title: "Create Project",
+      href: "./create-project",
+    },
+  ];
+
   return (
     <div className={`${styles.headerContent} ${styles.headerBorder}`}>
-      <div>
-        <Anchor title="Home" href="./" isSelected={true} />
-        <Anchor
-          title="Create Project"
-          href="./create-project"
-          isSelected={false}
-        />
-      </div>
+      <AnchorGroup anchorProps={anchorProps}></AnchorGroup>
       <div className={styles.title}>Phil-Photos</div>
       <div>
         <button className={styles.button} type="button">
