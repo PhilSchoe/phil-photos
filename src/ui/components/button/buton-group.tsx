@@ -17,6 +17,7 @@ export default function ButtonGroup({
       {buttonProps.map((props: ButtonProps, i) => (
         <Button
           title={props.title}
+          theme="selective"
           isActive={activeId === i}
           onClick={() => handleClick(props.onClick, i)}
           key={i}
