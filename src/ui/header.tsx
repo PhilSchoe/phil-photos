@@ -1,5 +1,6 @@
 "use client";
 import ButtonGroup from "./components/button/buton-group";
+import Button from "./components/button/button";
 import styles from "./header.module.css";
 import { useRouter } from "next/navigation";
 
@@ -18,12 +19,18 @@ export default function Header() {
       </div>
       <div className={styles.title}>Phil-Photos</div>
       <div>
-        <button className={styles.button} type="button">
-          Sign In
-        </button>
-        <button className={styles.button} type="button">
-          Sign Up
-        </button>
+        <Button
+          title="Sign In"
+          isActive={false}
+          theme="trigger"
+          onClick={() => {}}
+        />
+        <Button
+          title="Sign Up"
+          isActive={false}
+          theme="trigger"
+          onClick={() => {}}
+        />
       </div>
     </div>
   );

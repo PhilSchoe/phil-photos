@@ -1,6 +1,6 @@
 import styles from "./button.module.scss";
 
-type Themes = "selective";
+type Themes = "selective" | "trigger";
 
 export interface ButtonProps {
   title: string;
