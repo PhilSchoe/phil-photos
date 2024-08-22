@@ -1,8 +1,10 @@
 "use client";
+import { useState } from "react";
 import ButtonGroup from "./components/button/buton-group";
 import Button from "./components/button/button";
 import styles from "./header.module.scss";
 import { useRouter } from "next/navigation";
+import Modal from "./components/modal/modal";
 
 export default function Header() {
   const router = useRouter();
@@ -11,6 +13,8 @@ export default function Header() {
     { title: "Home", onClick: () => router.push("/") },
     { title: "Create Project", onClick: () => router.push("/create-project") },
   ];
+
+  const [showSignUp, setShowSignUp] = useState<boolean>(false);
 
   return (
     <div className={`${styles.Header} ${styles.headerBorder}`}>
@@ -33,9 +37,14 @@ export default function Header() {
           title="Sign Up"
           isActive={false}
           theme="trigger"
-          onClick={() => {}}
+          onClick={() => {
+            setShowSignUp(true);
+          }}
         />
       </div>
+      <Modal show={showSignUp} handleClose={() => setShowSignUp(false)}>
+        <h1>Sign Up!</h1>
+      </Modal>
     </div>
   );
 }
