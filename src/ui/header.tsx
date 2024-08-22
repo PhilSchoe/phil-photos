@@ -5,6 +5,7 @@ import Button from "./components/button/button";
 import styles from "./header.module.scss";
 import { useRouter } from "next/navigation";
 import Modal from "./components/modal/modal";
+import SignUp from "./components/sign-up/sign-up";
 
 export default function Header() {
   const router = useRouter();
@@ -43,7 +44,7 @@ export default function Header() {
         />
       </div>
       <Modal show={showSignUp} handleClose={() => setShowSignUp(false)}>
-        <h1>Sign Up!</h1>
+        <SignUp></SignUp>
       </Modal>
     </div>
   );
