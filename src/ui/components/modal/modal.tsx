@@ -8,12 +8,12 @@ export interface ModalProps {
 
 export default function Modal({ show, handleClose, children }: ModalProps) {
   const showHideClassName = show
-    ? `${styles["modal"]} ${styles["display-block"]}`
-    : `${styles["modal"]} ${styles["display-none"]}`;
+    ? `${styles["Modal"]} ${styles["Modal--display-block"]}`
+    : `${styles["Modal"]} ${styles["Modal--display-none"]}`;
 
   return (
     <div className={showHideClassName}>
-      <section className={styles["modal-main"]}>
+      <section className={styles["Modal__content"]}>
         {children}
         <button type="button" onClick={handleClose}>
           Close
