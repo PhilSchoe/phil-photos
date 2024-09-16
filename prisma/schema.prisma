@@ -15,9 +15,17 @@ datasource db {
 
 model User {
   id       Int       @id @default(autoincrement())
+  sessions Session[]
   name     String
   email    String    @unique
   projects Project[]
+}
+
+model Session {
+  id        String    @id
+  userId    Int
+  expiresAt DateTime
+  user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
 }
 
 model Project{
