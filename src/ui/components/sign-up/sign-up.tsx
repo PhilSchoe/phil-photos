@@ -1,8 +1,10 @@
+import { signup } from "./signUpAction";
+
 export default function SignUp() {
   return (
     <>
       <h1>Create an Account</h1>
-      <form /*action={signup}*/>
+      <form action={signup}>
         <label htmlFor="username">Username</label>
         <input name="username" id="username"></input>
         <br />
@@ -14,8 +16,6 @@ export default function SignUp() {
     </>
   );
 }
-
-//async function signup(_: any, formData: FormData): Promise<ActionResult> {}
 
 interface ActionResult {
   error: string;
