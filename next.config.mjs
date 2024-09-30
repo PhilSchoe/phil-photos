@@ -6,6 +6,9 @@ const nextConfig = {
       { protocol: "http", hostname: "localhost" },
     ],
   },
+  experimental: {
+    serverComponentsExternalPackages: ["@node-rs/argon2"],
+  },
 };
 
 export default nextConfig;
