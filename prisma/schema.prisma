@@ -14,11 +14,12 @@ datasource db {
 }
 
 model User {
-  id       Int       @id @default(autoincrement())
-  sessions Session[]
-  name     String
-  email    String    @unique
-  projects Project[]
+  id            Int       @id @default(autoincrement())
+  sessions      Session[]
+  name          String
+  email         String    @unique
+  password_hash String
+  projects      Project[]
 }
 
 model Session {
